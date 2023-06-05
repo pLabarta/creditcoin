@@ -115,7 +115,7 @@ You need to have the following:
 - `gluwa/hardhat-dev` container to simulate Ethereum
 - `creditcoin-node`
 
-    ./target/release/creditcoin-node --dev --mining-key 5DkPYq8hFiCeGxFBkz6DAwnTrvKevAJfTYrzFtr9hpDsEAU1 --monitor-nonce auto --alice --rpc-external --ws-external --rpc-methods unsafe
+    ./target/release/creditcoin-node --chain local --validator --alice --node-key d182d503b7dd97e7c055f33438c7717145840fd66b2a055284ee8d768241a463 -lrpc=info --enable-log-reloading --pruning archive --base-path ./demo --unsafe-ws-external --unsafe-rpc-external --rpc-cors=all
 
 - Subscan database & Subscan API containers running
 - Creditcoin Staking Dashboard running
