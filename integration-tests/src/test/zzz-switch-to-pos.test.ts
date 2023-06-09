@@ -14,7 +14,6 @@ describe('switch_to_post()', (): void => {
     let root: KeyringPair;
 
     // this file is created by the calling CI environment
-    const POW_BLOCK_INFO_PATH = 'fork-last-block-json.log';
     const { keyring } = testData(
         (global as any).CREDITCOIN_ETHEREUM_CHAIN as Blockchain,
         (global as any).CREDITCOIN_CREATE_WALLET,
@@ -108,7 +107,7 @@ describe('switch_to_post()', (): void => {
         await expect(sendSudo(api, root, callback)).rejects.toThrow('posSwitch.AlreadySwitched');
     });
 
-    testIf(fs.existsSync(POW_BLOCK_INFO_PATH), 'block history is preserved', async (): Promise<void> => {
+    testIf(fs.existsSync(process.env.LAST_POW_BLOCK_INFO_PATH), 'block history is preserved', async (): Promise<void> => {
         const { api } = ccApi;
 
         const powBlockData = JSON.parse(fs.readFileSync(POW_BLOCK_INFO_PATH, 'utf-8'));
