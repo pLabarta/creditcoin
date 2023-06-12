@@ -104,6 +104,7 @@ declare module '@polkadot/api-base/types/errors' {
              * The bid order has expired and is no longer valid.
              **/
             BidOrderExpired: AugmentedError<ApiType>;
+            BurnGATEAlreadyRegistered: AugmentedError<ApiType>;
             /**
              * The coin collection has already been registered.
              **/

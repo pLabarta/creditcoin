@@ -61,7 +61,9 @@ import type {
     PalletCreditcoinBidOrderId,
     PalletCreditcoinBlockchain,
     PalletCreditcoinCall,
+    PalletCreditcoinCollectCoinsBurnGATE,
     PalletCreditcoinCollectCoinsCollectedCoins,
+    PalletCreditcoinCollectCoinsUnverifiedBurnGATE,
     PalletCreditcoinCollectCoinsUnverifiedCollectedCoins,
     PalletCreditcoinDealOrder,
     PalletCreditcoinDealOrderId,
@@ -76,6 +78,7 @@ import type {
     PalletCreditcoinLoanTermsInterestType,
     PalletCreditcoinOcwErrorsVerificationFailureCause,
     PalletCreditcoinOcwTasksCollectCoinsGCreContract,
+    PalletCreditcoinOcwTasksCollectCoinsGateContract,
     PalletCreditcoinOffer,
     PalletCreditcoinOfferId,
     PalletCreditcoinOrderId,
@@ -278,7 +281,9 @@ declare module '@polkadot/types/types/registry' {
         PalletCreditcoinBidOrderId: PalletCreditcoinBidOrderId;
         PalletCreditcoinBlockchain: PalletCreditcoinBlockchain;
         PalletCreditcoinCall: PalletCreditcoinCall;
+        PalletCreditcoinCollectCoinsBurnGATE: PalletCreditcoinCollectCoinsBurnGATE;
         PalletCreditcoinCollectCoinsCollectedCoins: PalletCreditcoinCollectCoinsCollectedCoins;
+        PalletCreditcoinCollectCoinsUnverifiedBurnGATE: PalletCreditcoinCollectCoinsUnverifiedBurnGATE;
         PalletCreditcoinCollectCoinsUnverifiedCollectedCoins: PalletCreditcoinCollectCoinsUnverifiedCollectedCoins;
         PalletCreditcoinDealOrder: PalletCreditcoinDealOrder;
         PalletCreditcoinDealOrderId: PalletCreditcoinDealOrderId;
@@ -293,6 +298,7 @@ declare module '@polkadot/types/types/registry' {
         PalletCreditcoinLoanTermsInterestType: PalletCreditcoinLoanTermsInterestType;
         PalletCreditcoinOcwErrorsVerificationFailureCause: PalletCreditcoinOcwErrorsVerificationFailureCause;
         PalletCreditcoinOcwTasksCollectCoinsGCreContract: PalletCreditcoinOcwTasksCollectCoinsGCreContract;
+        PalletCreditcoinOcwTasksCollectCoinsGateContract: PalletCreditcoinOcwTasksCollectCoinsGateContract;
         PalletCreditcoinOffer: PalletCreditcoinOffer;
         PalletCreditcoinOfferId: PalletCreditcoinOfferId;
         PalletCreditcoinOrderId: PalletCreditcoinOrderId;

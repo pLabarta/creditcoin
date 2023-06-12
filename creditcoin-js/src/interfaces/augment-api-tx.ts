@@ -392,6 +392,7 @@ declare module '@polkadot/api-base/types/submittable' {
                         | PalletCreditcoinTaskId
                         | { VerifyTransfer: any }
                         | { CollectCoins: any }
+                        | { BurnGATE: any }
                         | string
                         | Uint8Array,
                     cause:
@@ -438,6 +439,7 @@ declare module '@polkadot/api-base/types/submittable' {
                         | PalletCreditcoinTaskOutput
                         | { VerifyTransfer: any }
                         | { CollectCoins: any }
+                        | { BurnGATE: any }
                         | string
                         | Uint8Array,
                 ) => SubmittableExtrinsic<ApiType>,
@@ -534,6 +536,13 @@ declare module '@polkadot/api-base/types/submittable' {
             removeAuthority: AugmentedSubmittable<
                 (who: AccountId32 | string | Uint8Array) => SubmittableExtrinsic<ApiType>,
                 [AccountId32]
+            >;
+            requestBurnGate: AugmentedSubmittable<
+                (
+                    evmAddress: Bytes | string | Uint8Array,
+                    txId: Bytes | string | Uint8Array,
+                ) => SubmittableExtrinsic<ApiType>,
+                [Bytes, Bytes]
             >;
             requestCollectCoins: AugmentedSubmittable<
                 (
