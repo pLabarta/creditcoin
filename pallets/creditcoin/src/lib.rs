@@ -234,12 +234,12 @@ pub mod pallet {
 	pub type CollectCoinsContract<T: Config> = StorageValue<_, GCreContract, ValueQuery>;
 
 	#[pallet::storage]
-	#[pallet::getter(fn burned_GATE)]
+	#[pallet::getter(fn burned_gate)]
 	pub type BurnedGATE<T: Config> =
 		StorageMap<_, Identity, BurnGATEId<T::Hash>, types::BurnGATEStruct<T::Hash, T::Balance>>;
 
 	#[pallet::storage]
-	#[pallet::getter(fn GATE_contract)]
+	#[pallet::getter(fn gate_contract)]
 	pub type BurnGATEContract<T: Config> = StorageValue<_, GATEContract, ValueQuery>;
 
 	#[pallet::event]
@@ -1411,7 +1411,7 @@ pub mod pallet {
 			tx_id: ExternalTxId,
 		) -> DispatchResult {
 			let who = ensure_signed(origin)?;
-			let contract = Self::GATE_contract();
+			let contract = Self::gate_contract();
 			let pending = types::UnverifiedBurnGATE { to: evm_address, tx_id, contract };
 			let burn_gate_id = TaskV2::<T>::to_id(&pending);
 			let deadline = T::TaskScheduler::deadline();

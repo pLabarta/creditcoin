@@ -116,7 +116,7 @@ pub fn validate_collect_coins(
 	}
 }
 
-pub fn validate_burn_GATE(
+pub fn validate_burn_gate(
 	to: &ExternalAddress,
 	receipt: &EthTransactionReceipt,
 	transaction: &EthTransaction,
@@ -189,7 +189,7 @@ impl<T: CreditcoinConfig> Pallet<T> {
 		Ok(amount)
 	}
 
-	pub fn verify_burn_GATE_ocw(u_cc: &UnverifiedBurnGATE) -> VerificationResult<T::Balance> {
+	pub fn verify_burn_gate_ocw(u_cc: &UnverifiedBurnGATE) -> VerificationResult<T::Balance> {
 		log::debug!("verifying OCW burn GATE");
 		let UnverifiedBurnGATE { to, tx_id, contract: GATEContract { address, chain } } = u_cc;
 		let rpc_url = &chain.rpc_url()?;
@@ -197,7 +197,7 @@ impl<T: CreditcoinConfig> Pallet<T> {
 		let tx_receipt = rpc::eth_get_transaction_receipt(tx_id, rpc_url)?;
 		let eth_tip = rpc::eth_get_block_number(rpc_url)?;
 
-		let amount = validate_burn_GATE(to, &tx_receipt, &tx, eth_tip, address)?;
+		let amount = validate_burn_gate(to, &tx_receipt, &tx, eth_tip, address)?;
 		let amount = amount.saturating_mul(sp_core::U256::from_dec_str("2").unwrap());
 		let amount = amount.saturated_into::<u128>().saturated_into::<T::Balance>();
 

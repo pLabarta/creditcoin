@@ -190,7 +190,7 @@ impl<T: Config> OffchainVerification<T> for UnverifiedBurnGATE {
 	type Output = T::Balance;
 
 	fn verify(&self) -> VerificationResult<Self::Output> {
-		crate::Pallet::<T>::verify_burn_GATE_ocw(self)
+		crate::Pallet::<T>::verify_burn_gate_ocw(self)
 	}
 }
 
