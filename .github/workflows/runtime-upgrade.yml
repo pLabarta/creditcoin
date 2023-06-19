@@ -16,6 +16,7 @@ jobs:
   setup:
     runs-on: ubuntu-22.04
     outputs:
+      test_config: ${{ steps.testnet-env.outputs.test_config || steps.mainnet-env.outputs.test_config }}
       target_chain: ${{ steps.testnet-env.outputs.target_chain || steps.mainnet-env.outputs.target_chain }}
       boot_node: ${{ steps.testnet-env.outputs.boot_node || steps.mainnet-env.outputs.boot_node }}
       rpc_url: ${{ steps.testnet-env.outputs.rpc_url || steps.mainnet-env.outputs.rpc_url }}
@@ -39,6 +40,7 @@ jobs:
         run: |
           # shellcheck disable=SC2129
           echo "target_chain=test" >> "$GITHUB_OUTPUT"
+          echo "test_config=testnet.config.ts" >> "$GITHUB_OUTPUT"
           echo "boot_node=/dns4/testnet-bootnode.creditcoin.network/tcp/30333/p2p/12D3KooWG3eEuYxo37LvU1g6SSESu4i9TQ8FrZmJcjvdys7eA3cH" >> "$GITHUB_OUTPUT"
           echo "rpc_url=wss://rpc.testnet.creditcoin.network:443/ws" >> "$GITHUB_OUTPUT"
           echo "https_rpc_url=https://rpc.testnet.creditcoin.network/rpc" >> "$GITHUB_OUTPUT"
@@ -52,6 +54,7 @@ jobs:
         run: |
           # shellcheck disable=SC2129
           echo "target_chain=main" >> "$GITHUB_OUTPUT"
+          echo "test_config=mainnet.config.ts" >> "$GITHUB_OUTPUT"
           echo "boot_node=/dns4/bootnode.creditcoin.network/tcp/30333/p2p/12D3KooWAEgDL126EUFxFfdQKiUhmx3BJPdszQHu9PsYsLCuavhb" >> "$GITHUB_OUTPUT"
           echo "rpc_url=wss://rpc.mainnet.creditcoin.network:443/ws" >> "$GITHUB_OUTPUT"
           echo "https_rpc_url=https://rpc.mainnet.creditcoin.network/rpc" >> "$GITHUB_OUTPUT"
@@ -588,8 +591,10 @@ jobs:
       - name: Execute integration tests
         run: |
           cp last-block.json ./integration-tests/
+
+          # TODO: using the default config b/c creditcoin-node is running stand-alone
+          # not sure if that will work
           yarn --cwd ./integration-tests/ test
-          ### TODO: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ specify config for testnet/mainnet
         env:
           # Note: this is PoW blocks on the live chain
           LAST_POW_BLOCK_NUMBER: ${{ needs.setup.outputs.last_block_number }}
