@@ -1293,12 +1293,18 @@ pub mod pallet {
 
 					let ctc_treasury_address = &T::BurnGATECTCWalletAddress::get();
 
-					<pallet_balances::Pallet<T> as CurrencyT<T::AccountId>>::transfer(
-						ctc_treasury_address,
-						&address.owner,
-						burned_coins.amount,
-						ExistenceRequirement::AllowDeath,
-					)?;
+					let transfer_result =
+						<pallet_balances::Pallet<T> as CurrencyT<T::AccountId>>::transfer(
+							ctc_treasury_address,
+							&address.owner,
+							burned_coins.amount,
+							ExistenceRequirement::AllowDeath,
+						);
+
+					match transfer_result {
+						DispatchError(_) => return DispatchResultWithPostInfo::from(try_get!()),
+						Ok(()) => (),
+					}
 
 					BurnedGATE::<T>::insert(&id, burned_coins.clone());
 					(id.clone().into_inner(), Event::<T>::BurnedGATEMinted(id, burned_coins))
