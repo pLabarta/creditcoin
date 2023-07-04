@@ -20,7 +20,6 @@ jobs:
     # checkov:skip=CKV2_GHA_1:We need this for creditcoin-js typedefs auto-commit
     permissions: write-all
     name: creditcoin-cli unit-tests
-    runs-on: ubuntu-22.04
     strategy:
       matrix:
         directory: [scripts/cc-cli]
@@ -42,9 +41,3 @@ jobs:
           yarn upgrade 'creditcoin-js'
           yarn test
           popd
-
-      
-
-
-
-      
