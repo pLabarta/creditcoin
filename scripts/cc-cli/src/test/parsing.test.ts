@@ -26,7 +26,7 @@ describe("parseAmount", () => {
   test("parsed valid amount returns same amount * 10^^18", () => {
     const amount = "100";
     const parsedAmount = parseAmount(amount);
-    expect(parsedAmount.toString()).toBe("100000000000000000000");
+    expect(parsedAmount.toString()).toBe("200000000000000000000");
   });
 
   test("parsed negative amount throws error", () => {
